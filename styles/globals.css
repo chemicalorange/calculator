@@ -1,26 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+
+* {
+  font-family: 'League Spartan', sans-serif;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+
+:root {
+  --color-text: hsl(60, 10%, 19%);
+  --color-background: hsl(0, 5%, 81%);
+  --color-block: hsl(0, 0%, 91%);
+  --color-btn: hsl(45, 7%, 89%);
+  --color-btn-border: hsl(35, 11%, 61%);
+  --color-btn-colored: hsl(185, 42%, 37%);
+  --color-btn-colored-border: hsl(185, 58%, 25%);
+  --color-btn-accent: hsl(25, 98%, 40%);
+  --color-btn-accent-border: hsl(25, 99%, 27%);
+  --color-btn-accent-text: white;
+  --color-accent: hsl(25, 98%, 40%);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.dark {
+  --color-text: hsl(52, 100%, 62%);
+  --color-background: hsl(268, 75%, 9%);
+  --color-block: hsl(268, 71%, 12%);
+  --color-btn: hsl(268, 47%, 21%);
+  --color-btn-border: hsl(290, 70%, 36%);
+  --color-btn-colored: hsl(281, 89%, 26%);
+  --color-btn-colored-border: hsl(285, 91%, 52%);
+  --color-btn-accent: hsl(176, 100%, 44%);
+  --color-btn-accent-border: hsl(177, 92%, 70%);
+  --color-btn-accent-text: black;
+  --color-accent: hsl(176, 100%, 44%);
 }

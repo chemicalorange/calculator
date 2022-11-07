@@ -1,0 +1,32 @@
+.button {
+  border: none;
+  height: 60px;
+  min-width: 100px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 28px;
+  border-radius: 10px;
+  border-bottom: 3px solid var(--color-btn-border);
+  background: var(--color-btn);
+  color: var(--color-text);
+
+  @media screen and (max-width: 516px) {
+    min-width: fit-content;
+  }
+
+  &:active {
+    border-bottom: 1px solid var(--color-btn-border);
+  }
+
+  &.colored {
+    background: var(--color-btn-colored);
+    border-color: var(--color-btn-colored-border);
+    color: white;
+  }
+
+  &.accent {
+    background: var(--color-btn-accent);
+    border-color: var(--color-btn-accent-border);
+    color: var(--color-btn-accent-text);
+  }
+}
