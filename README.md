@@ -1,6 +1,6 @@
 ### Links
 - Author: [@chemicalorange (Elizaveta)](https://github.com/chemicalorange)
-- Live Site URL: [Website]https://calculator-puce-seven.vercel.app/)
+- Live Site URL: [Website](https://calculator-puce-seven.vercel.app/)
 
 ### Built with
 
