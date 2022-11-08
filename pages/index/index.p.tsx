@@ -2,18 +2,15 @@ import Head from 'next/head'
 import styles from './styles.module.scss'
 
 import { useState } from 'react'
-import { Button } from 'components/ui/button'
 import { Output } from 'components/ui/output'
 
-import { buttonsData } from './data'
-
 import cn from 'classnames'
+import { Keyboard } from 'components/common/keyboard'
 
 const IndexPage = () => {
-  console.log(buttonsData);
   
-  const [value, setValue]: any = useState('0')
-  const [prevValue, setPrevValue]: any = useState('')
+  const [value, setValue] = useState<any>('0')
+  const [prevValue, setPrevValue] = useState<any>('')
   const [operator, setOperator] = useState('')
   const [colorDarkTheme, setDarkColorTheme] = useState(false)
 
@@ -86,11 +83,7 @@ const IndexPage = () => {
   }
 
   const isPrevValue = () => {
-    if (prevValue !== '') {
-      return true
-    }
-
-    return false
+    return prevValue !== ''
   }
 
   const float = () => {
@@ -107,7 +100,6 @@ const IndexPage = () => {
         <meta name="description" content="Calculator" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <div className={cn(styles.wrapper, { dark: colorDarkTheme })}>
         <div className={styles.header}>
           <span className={styles.title}>Calc</span>
@@ -122,36 +114,14 @@ const IndexPage = () => {
           </div>
         </div>
         <Output operator={operator} prevValue={prevValue} value={value} />
-        <div className={styles.keyboard}>
-          { buttonsData.map((item, index) => {
-            const {title, type} = item
-            if(type === 'number') {
-             return (<Button key={index} variant='default' onClick={() => addNumber(title)}>
-                      {title}
-                    </Button>)
-            } else if (type === 'operator') {
-              return (<Button key={index} variant='default' onClick={() => operationHandler(title)}>
-                      {title}
-                    </Button>)
-            } else if (type === 'del') {
-              return (<Button key={index} variant='colored' onClick={() => del()}>
-                      {title}
-                    </Button>)
-            } else if (type === 'reset') {
-              return (<Button key={index} variant='colored' onClick={() => reset()}>
-                      {title}
-                    </Button>)
-            } else if (type === 'result') {
-              return (<Button key={index} variant='accent' onClick={() => result()}>
-                      {title}
-                    </Button>)
-            } else if (type === 'float') {
-              return (<Button key={index} variant='default' onClick={() => float()}>
-                      {title}
-                    </Button>)
-            }
-          })}
-        </div>
+        <Keyboard
+          addNumber={addNumber}
+          del={del}
+          float={float}
+          operationHandler={operationHandler}
+          reset={reset}
+          result={result}
+        />
       </div>
     </div>
   )

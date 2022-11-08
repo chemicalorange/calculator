@@ -2,8 +2,8 @@ import styles from './styles.module.scss'
 
 type ComponentProps = {
   operator: string
-  prevValue: string
-  value: string
+  prevValue: string | number 
+  value: string | number
 }
 
 export const Output = (props: ComponentProps) => {
