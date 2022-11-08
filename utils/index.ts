@@ -27,7 +27,7 @@ export const deleteLastNumber = (numbers: string) => {
 }
 
 export const addDot = (value: string) => {
-  let newValue = value.split('')
+  let newValue = value.toString().split('')
   if (!newValue.includes('.')) {
     value += '.'
   }

@@ -2,12 +2,12 @@ import cn from 'classnames'
 
 import styles from './styles.module.scss'
 
-type THeader = {
+type HeaderProps = {
   isDark: boolean,
   toggleDark: Function
 }
 
-export const Header:React.FC<THeader> = ({isDark, toggleDark}) => {
+export const Header:React.FC<HeaderProps> = ({isDark, toggleDark}) => {
   return (
     <div className={styles.header}>
           <span className={styles.title}>Calc</span>

@@ -1,15 +1,16 @@
 import Head from 'next/head'
 
 import { useState } from 'react'
+
 import { Output } from 'components/ui/output'
 import { Keyboard } from 'components/common/keyboard'
+import { Header } from 'components/ui/header'
 
 import { addDot, deleteLastNumber, makeOperation } from 'utils'
 
 import cn from 'classnames'
 
 import styles from './styles.module.scss'
-import { Header } from 'components/ui/header'
 
 const IndexPage = () => {
   

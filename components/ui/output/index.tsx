@@ -1,12 +1,12 @@
 import styles from './styles.module.scss'
 
-type ComponentProps = {
+type OutputProps = {
   operator: string
   prevValue: string | number 
   value: string | number
 }
 
-export const Output = (props: ComponentProps) => {
+export const Output = (props: OutputProps) => {
   const {operator, prevValue, value} = props 
   return (
     <div className={styles.output}>
