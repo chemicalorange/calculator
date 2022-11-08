@@ -1,11 +1,15 @@
 import Head from 'next/head'
-import styles from './styles.module.scss'
 
 import { useState } from 'react'
 import { Output } from 'components/ui/output'
+import { Keyboard } from 'components/common/keyboard'
+
+import { addDot, deleteLastNumber, makeOperation } from 'utils'
 
 import cn from 'classnames'
-import { Keyboard } from 'components/common/keyboard'
+
+import styles from './styles.module.scss'
+import { Header } from 'components/ui/header'
 
 const IndexPage = () => {
   
@@ -33,53 +37,27 @@ const IndexPage = () => {
       setPrevValue('')
       setOperator('')
     }
-
-    setValue((prevState: string) => {
-      if (prevState.length < 2) {
-        return '0'
-      }
-
-      let newState = prevState.split('')
-      newState.pop()
-      return newState.join('')
-    })
+    setValue((prevState: string) => deleteLastNumber(prevState))
   }
 
   const operationHandler = (operation: string) => {
     setOperator(operation)
     if (isPrevValue()) {
-      makeOperation()
+      const result = makeOperation(prevValue, value, operation)
+      setPrevValue(result)
     } else {
       setPrevValue(value)
-      setValue('0')
     }
+    setValue('0')
   }
 
-  const result = () => {
+  const getResult = () => {
     if (isPrevValue()) {
-      makeOperation()
-      setValue(eval(`${prevValue} ${operator} ${value}`).toString())
+      const result = makeOperation(prevValue, value, operator)
+      setValue(result)
       setPrevValue('')
       setOperator('')
     }
-  }
-
-  const makeOperation = () => {
-    switch (operator) {
-      case '+':
-        setPrevValue(+prevValue + +value)
-        break
-      case '/':
-        setPrevValue(prevValue / +value)
-        break
-      case 'x':
-        setPrevValue(+value * prevValue)
-        break
-      case '-':
-        setPrevValue(+prevValue - +value)
-        break
-    }
-    setValue('0')
   }
 
   const isPrevValue = () => {
@@ -87,32 +65,21 @@ const IndexPage = () => {
   }
 
   const float = () => {
-    let newValue = value.split('')
-    if (!newValue.includes('.')) {
-      setValue((prevState: string) => prevState + '.')
-    }
+    setValue((prevValue:string) => addDot(prevValue))
   }
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Chemicalculator</title>
+        <title>Calculator</title>
         <meta name="description" content="Calculator" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={cn(styles.wrapper, { dark: colorDarkTheme })}>
-        <div className={styles.header}>
-          <span className={styles.title}>Calc</span>
-          <div className={styles.themeContainer}>
-            <span>Theme</span>
-            <div
-              className={cn(styles.theme, { [styles.checked]: colorDarkTheme })}
-              onClick={() => setDarkColorTheme((prev) => !prev)}
-            >
-              <span></span>
-            </div>
-          </div>
-        </div>
+        <Header 
+          isDark={colorDarkTheme}
+          toggleDark={() => setDarkColorTheme((prev) => !prev)}
+        />
         <Output operator={operator} prevValue={prevValue} value={value} />
         <Keyboard
           addNumber={addNumber}
@@ -120,7 +87,7 @@ const IndexPage = () => {
           float={float}
           operationHandler={operationHandler}
           reset={reset}
-          result={result}
+          result={getResult}
         />
       </div>
     </div>
